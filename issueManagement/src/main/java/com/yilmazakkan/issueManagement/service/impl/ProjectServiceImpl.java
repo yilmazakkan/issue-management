@@ -71,6 +71,11 @@ public class ProjectServiceImpl implements ProjectService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public Boolean delete(Long id) {
+		 projectRepository.deleteById(id);
+		 return true;
+	}
 
 	@Override
 	public ProjectDto update(Long id, ProjectDto project) {

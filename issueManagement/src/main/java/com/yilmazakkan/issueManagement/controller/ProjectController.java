@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,7 +40,7 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<ProjectDto> getById(@PathVariable ("id") Long id){
+	public ResponseEntity<ProjectDto> getById(@PathVariable (value = "id",required = true) Long id){  //required = true null bir id geldiğinde islem yapmaya calısmasın.
 		ProjectDto projectDto = projectServiceImpl.getById(id);
 		return ResponseEntity.ok(projectDto);
 	
@@ -57,8 +58,17 @@ public class ProjectController {
 																													/*save gönderip insert update handle etmesini bekleyebiliriz ama bu SOLID prensiplerine uymaz
 																													SOLID presiplerinin ilki single responsibility her method veya her işlem kendi görevini yapmalı başka bir metodun görevini yüklememeliyiz*/
 		return ResponseEntity.ok(projectServiceImpl.update(id,project));
+			
 		
 	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Boolean> delete(@PathVariable(value = "id" ,required =  true) Long id){
+		
+		return ResponseEntity.ok(projectServiceImpl.delete(id));
+		
+	}
+	
 	
 	
 }
