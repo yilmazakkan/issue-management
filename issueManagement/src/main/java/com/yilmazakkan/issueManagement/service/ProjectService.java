@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 
-
+import com.yilmazakkan.issueManagement.dto.ProjectDto;
 import com.yilmazakkan.issueManagement.entity.Project;
 
 
@@ -13,14 +13,15 @@ import com.yilmazakkan.issueManagement.entity.Project;
 
 public interface ProjectService {
 	
-	Project save(Project project);
+	ProjectDto save(ProjectDto project);
 	
-	Project getById(Long id); 
+	ProjectDto getById(Long id); 
 	
-	List<Project> getByProjectCode(String projectCode);
+	Project getByProjectCode(String projectCode);
 	
 	List<Project> getByProjectContains(String projectCode);
 	
+	ProjectDto update(Long id, ProjectDto project);
 		
 	Page<Project> getAllPageable(Pageable pageable);
 	

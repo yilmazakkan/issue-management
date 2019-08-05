@@ -14,7 +14,7 @@ import com.yilmazakkan.issueManagement.entity.Project;
 public interface ProjectRepository  extends JpaRepository<Project, Long> {
 
 	
-	 Project getByProjectCode(String projectCode);
+ 	    Project getByProjectCode(String projectCode);
 
 	    Project getByProjectCodeAndIdNot(String projectCode, Long id);
 
