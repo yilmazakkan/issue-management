@@ -2,6 +2,8 @@ package com.yilmazakkan.issueManagement.service.impl;
 
 import java.util.Arrays;
 
+import javax.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 
 import com.yilmazakkan.issueManagement.dto.IssueDto;
+import com.yilmazakkan.issueManagement.dto.ProjectDto;
 import com.yilmazakkan.issueManagement.entity.Issue;
+import com.yilmazakkan.issueManagement.entity.Project;
 import com.yilmazakkan.issueManagement.repository.IssueRepository;
 import com.yilmazakkan.issueManagement.service.IssueService;
 import com.yilmazakkan.issueManagement.util.TPage;
@@ -48,8 +52,8 @@ public class IssueServiceImpl implements IssueService{
 
 	@Override
 	public IssueDto getById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Issue p = issueRepository.getOne(id);
+		return modelMapper.map(p, IssueDto.class);
 	}
 
 
@@ -67,9 +71,20 @@ public class IssueServiceImpl implements IssueService{
 
 
 	@Override
-	public Boolean delete(IssueDto issue) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean delete(Long issueId) {
+		 issueRepository.deleteById(issueId);
+		 return true;
+	}
+
+
+
+	@Override
+	public IssueDto update(Long id, IssueDto project) {
+		
+	return null;
+
+		
+	}
 	}
 
 
@@ -77,4 +92,7 @@ public class IssueServiceImpl implements IssueService{
 	
 
 
-}
+	
+
+
+	

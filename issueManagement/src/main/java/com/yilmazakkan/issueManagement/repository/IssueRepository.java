@@ -6,4 +6,5 @@ import com.yilmazakkan.issueManagement.entity.Issue;
 
 public interface IssueRepository extends JpaRepository<Issue, Long>{
 
+
 }
