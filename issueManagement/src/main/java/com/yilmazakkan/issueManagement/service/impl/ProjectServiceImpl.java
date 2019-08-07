@@ -1,21 +1,24 @@
 package com.yilmazakkan.issueManagement.service.impl;
 
+
+import java.util.Arrays;
 import java.util.List;
 
 
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
 
 
 import com.yilmazakkan.issueManagement.dto.ProjectDto;
 import com.yilmazakkan.issueManagement.entity.Project;
 import com.yilmazakkan.issueManagement.repository.ProjectRepository;
 import com.yilmazakkan.issueManagement.service.ProjectService;
+import com.yilmazakkan.issueManagement.util.TPage;
+
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -56,15 +59,11 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public List<Project> getByProjectContains(String projectCode) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
-	@Override
-	public Page<Project> getAllPageable(Pageable pageable) {
-		
-		return projectRepository.findAll(pageable);
-	}
+	
 
 	@Override
 	public Boolean delete(Project project) {
@@ -100,6 +99,19 @@ public class ProjectServiceImpl implements ProjectService {
 		projectRepository.save(projectDb);
 		return modelMapper.map(projectDb, ProjectDto.class);
 	}
+
+	@Override
+	public TPage<ProjectDto> getAllPageable(Pageable pageable) {
+		Page<Project> data = projectRepository.findAll(pageable);
+        TPage<ProjectDto> respnose = new TPage<ProjectDto>();
+        respnose.setStat(data, Arrays.asList(modelMapper.map(data.getContent(), ProjectDto[].class)));
+        return respnose;
+	}
+
+
+
+	 
+
 
 	
 
