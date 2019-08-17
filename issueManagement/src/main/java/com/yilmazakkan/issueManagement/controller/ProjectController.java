@@ -34,7 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(ApiPaths.ProjectCtrl.CTRL)
 @Api(value = ApiPaths.ProjectCtrl.CTRL, description = "Project APIs")
 @Slf4j
-@CrossOrigin
+@CrossOrigin( origins ="http://localhost:4200")  //by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. sorunu çözümü
 public class ProjectController {
 
 	/**
