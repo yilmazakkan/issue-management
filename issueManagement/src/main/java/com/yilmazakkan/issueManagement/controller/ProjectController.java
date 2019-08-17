@@ -1,11 +1,13 @@
 package com.yilmazakkan.issueManagement.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yilmazakkan.issueManagement.dto.ProjectDto;
-import com.yilmazakkan.issueManagement.entity.Project;
 import com.yilmazakkan.issueManagement.service.impl.ProjectServiceImpl;
 import com.yilmazakkan.issueManagement.util.ApiPaths;
 import com.yilmazakkan.issueManagement.util.TPage;
@@ -33,6 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(ApiPaths.ProjectCtrl.CTRL)
 @Api(value = ApiPaths.ProjectCtrl.CTRL, description = "Project APIs")
 @Slf4j
+@CrossOrigin
 public class ProjectController {
 
 	/**
@@ -51,6 +53,13 @@ public class ProjectController {
 	
 	public ProjectController(ProjectServiceImpl projectServiceImpl) {
 		this.projectServiceImpl = projectServiceImpl;
+	}
+	
+	@GetMapping()
+	@ApiOperation(value="Get All Operation", response = ProjectDto.class, responseContainer = "List")
+	public ResponseEntity<List<ProjectDto>> getAll(){
+		List<ProjectDto> data = projectServiceImpl.getAll();
+		return ResponseEntity.ok(data);
 	}
 	
 	
