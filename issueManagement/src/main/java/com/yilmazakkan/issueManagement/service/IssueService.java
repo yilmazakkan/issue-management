@@ -2,6 +2,8 @@ package com.yilmazakkan.issueManagement.service;
 
 
 
+import java.util.List;
+
 import org.springframework.data.domain.Pageable;
 
 import com.yilmazakkan.issueManagement.dto.IssueDto;
@@ -19,4 +21,6 @@ public interface IssueService {
 	Boolean delete(Long issue);
 	
 	IssueDto update(Long id, IssueDto project);
+
+
 }

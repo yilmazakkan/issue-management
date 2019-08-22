@@ -1,6 +1,8 @@
 package com.yilmazakkan.issueManagement.service.impl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -58,14 +60,11 @@ public class IssueServiceImpl implements IssueService{
 
 
 
-	@Override  // ????????????????????????????????????????????????????????????
-	public TPage<IssueDto> getAllPageable(Pageable pageable) {
+	  
+	public List<IssueDto> getAll() {
 		
-		Page<Issue> data = issueRepository.findAll(pageable);
-		TPage page = new TPage<IssueDto>();
- 		IssueDto[] dtos = modelMapper.map(data.getContent(), IssueDto[].class);
- 		page.setStat(data, Arrays.asList(dtos));
-		return page;
+		List<Issue> data = issueRepository.findAll();
+		return Arrays.asList(modelMapper.map(data, IssueDto[].class));
 	}
 
 
@@ -85,7 +84,15 @@ public class IssueServiceImpl implements IssueService{
 
 		
 	}
-	}
+	
+	 @Override
+	    public TPage<IssueDto> getAllPageable(Pageable pageable) {
+	        Page<Issue> data = issueRepository.findAll(pageable);
+	        TPage<IssueDto> respnose = new TPage<IssueDto>();
+	        respnose.setStat(data, Arrays.asList(modelMapper.map(data.getContent(), IssueDto[].class)));
+	        return respnose;
+	    }
+}
 
 
 

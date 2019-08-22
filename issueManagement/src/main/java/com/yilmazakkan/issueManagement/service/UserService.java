@@ -3,16 +3,17 @@ package com.yilmazakkan.issueManagement.service;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 
-
+import com.yilmazakkan.issueManagement.dto.UserDto;
 import com.yilmazakkan.issueManagement.entity.User;
+import com.yilmazakkan.issueManagement.util.TPage;
 
 public interface UserService {
 	
-	User save(User user);
-	
-	User getById(Long id); 
-	
-	Page<User> getAllPageable(Pageable pageable);
-	
-	User getByUsername(String username);
+		UserDto save(UserDto user);
+
+	    UserDto getById(Long id);
+
+	    TPage<UserDto> getAllPageable(Pageable pageable);
+
+	    UserDto getByUsername(String username);
 }

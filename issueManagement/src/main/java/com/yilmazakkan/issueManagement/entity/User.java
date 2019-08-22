@@ -18,8 +18,14 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @Table(name = "users")
-public class User {
+public class User extends BaseEntity {
 	  
+
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 		@Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    private Long id;
