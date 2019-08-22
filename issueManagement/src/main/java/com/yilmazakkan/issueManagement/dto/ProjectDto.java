@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,5 +25,12 @@ public class ProjectDto {
 	@NotNull
 	@ApiModelProperty(required = true,value = "Code Of Project")
 	private  String projectCode;
+	
+	@NotNull
+	@ApiModelProperty(required = true,value = "Project Manager ID")
+	private  Long managerId;
+	
+	@ApiModelProperty(required = true,value = "Project Manager Name")
+	private  UserDto manager;
 	
 }

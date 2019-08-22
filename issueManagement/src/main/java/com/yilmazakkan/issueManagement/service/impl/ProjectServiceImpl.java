@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 
 import com.yilmazakkan.issueManagement.dto.ProjectDto;
 import com.yilmazakkan.issueManagement.entity.Project;
+import com.yilmazakkan.issueManagement.entity.User;
 import com.yilmazakkan.issueManagement.repository.ProjectRepository;
+import com.yilmazakkan.issueManagement.repository.UserRepository;
 import com.yilmazakkan.issueManagement.service.ProjectService;
 import com.yilmazakkan.issueManagement.util.TPage;
 
@@ -23,12 +25,15 @@ import com.yilmazakkan.issueManagement.util.TPage;
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
-	@Autowired
-	private ProjectRepository projectRepository;
+	 private final ProjectRepository projectRepository;
+	    private final ModelMapper modelMapper;
+	    private final UserRepository userRepository;
 
-	@Autowired
-	private ModelMapper modelMapper;
-	
+	    public ProjectServiceImpl(ProjectRepository projectRepository,UserRepository userRepository, ModelMapper modelMapper) {
+	        this.projectRepository = projectRepository;
+	        this.modelMapper = modelMapper;
+	        this.userRepository= userRepository;
+	    }
 	
 	@Override
 	public ProjectDto save(ProjectDto project) {
@@ -37,11 +42,13 @@ public class ProjectServiceImpl implements ProjectService {
 		if (projectCheck!=null) {
 			throw new IllegalArgumentException("Project Code Already Exist");
 		}
-		Project p = modelMapper.map(project, Project.class);
-		
-		 p = projectRepository.save(p);
-		 project.setId(p.getId());
-		 return project;
+		 Project p = modelMapper.map(project, Project.class);
+		 User user = userRepository.getOne(project.getManagerId());
+	        p.setManager(user);
+
+	        p = projectRepository.save(p);
+	        project.setId(p.getId());
+	        return project;
 	}
 
 	@Override

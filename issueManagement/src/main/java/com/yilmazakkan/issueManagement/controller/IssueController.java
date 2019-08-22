@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping(ApiPaths.IssueCtrl.CTRL)
 @Api(value = ApiPaths.IssueCtrl.CTRL, description = "Issue APIs")
+@CrossOrigin
 public class IssueController {
 
 	/**
