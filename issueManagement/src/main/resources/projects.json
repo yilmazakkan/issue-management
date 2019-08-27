@@ -41,6 +41,20 @@
     "username" : "jdoe",
     "nameSurname": "John Doe",
     "email":"jdoe@gmail.com"
+  },
+   {
+    "_class": "com.yilmazakkan.issueManagement.entity.Issue",
+    "description" : "description deneme",
+    "details": "Detaylar",
+    "issueStatus":"OPEN"
+  },
+   {
+    "_class": "com.yilmazakkan.issueManagement.entity.Issue",
+    "description" : " deneme",
+    "details": "Hello",
+    "date": "2019-08-10",
+    "issueStatus":"IN_PROGRESS"
   }
+  
 
  ]

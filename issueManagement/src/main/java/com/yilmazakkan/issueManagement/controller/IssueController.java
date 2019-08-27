@@ -3,6 +3,7 @@ package com.yilmazakkan.issueManagement.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yilmazakkan.issueManagement.dto.IssueDetailDto;
 import com.yilmazakkan.issueManagement.dto.IssueDto;
 import com.yilmazakkan.issueManagement.service.impl.IssueServiceImpl;
 import com.yilmazakkan.issueManagement.util.ApiPaths;
+import com.yilmazakkan.issueManagement.util.TPage;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -47,6 +50,13 @@ public class IssueController {
 		this.issueServiceImpl = issueServiceImpl;
 	}
 	
+	@GetMapping("/pagination")
+    @ApiOperation(value = "Get By Pagination Operation", response = IssueDto.class)
+    public ResponseEntity<TPage<IssueDto>> getAllByPagination(Pageable pageable) {
+        TPage<IssueDto> data = issueServiceImpl.getAllPageable(pageable);
+        return ResponseEntity.ok(data);
+    }
+	
 	@GetMapping("/{id}")
 	@ApiOperation(value = "Get By Id Operation", response = IssueDto.class)
 	public ResponseEntity<IssueDto> getById(@PathVariable (value = "id",required = true) Long id){  //required = true null bir id geldiğinde islem yapmaya calısmasın.
@@ -54,6 +64,13 @@ public class IssueController {
 		return ResponseEntity.ok(issueDto);
 	
 	}
+	
+	@GetMapping("/detail/{id}")
+    @ApiOperation(value = "Get By Id Operation", response = IssueDto.class)
+    public ResponseEntity<IssueDetailDto> getByIdWithDetails(@PathVariable(value = "id", required = true) Long id) {
+        IssueDetailDto detailDto = issueServiceImpl.getByIdWithDetails(id);
+        return ResponseEntity.ok(detailDto);
+    }
 	
 	@PostMapping
 	@ApiOperation(value = "Create Operation", response = IssueDto.class)
