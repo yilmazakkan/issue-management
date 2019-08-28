@@ -1,5 +1,8 @@
 package com.yilmazakkan.issueManagement.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yilmazakkan.issueManagement.dto.IssueDetailDto;
 import com.yilmazakkan.issueManagement.dto.IssueDto;
+import com.yilmazakkan.issueManagement.entity.IssueStatus;
 import com.yilmazakkan.issueManagement.service.impl.IssueServiceImpl;
 import com.yilmazakkan.issueManagement.util.ApiPaths;
 import com.yilmazakkan.issueManagement.util.TPage;
@@ -97,7 +101,12 @@ public class IssueController {
 		return ResponseEntity.ok(issueServiceImpl.delete(id));
 		
 	}
-	
+	@GetMapping("/statuses")
+	@ApiOperation(value="Get All Issue Statuses Operation", response = String.class, responseContainer = "List")
+	public ResponseEntity<List<IssueStatus>> getAll(){
+		
+		return ResponseEntity.ok(Arrays.asList(IssueStatus.values()));
+	}
 	
 	
 }
