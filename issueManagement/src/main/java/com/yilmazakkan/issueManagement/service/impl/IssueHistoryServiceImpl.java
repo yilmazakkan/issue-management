@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 
 import com.yilmazakkan.issueManagement.dto.IssueHistoryDto;
+import com.yilmazakkan.issueManagement.dto.IssueUpdateDto;
 import com.yilmazakkan.issueManagement.entity.Issue;
 import com.yilmazakkan.issueManagement.entity.IssueHistory;
 import com.yilmazakkan.issueManagement.repository.IssueHistoryRepository;
@@ -44,7 +45,7 @@ public class IssueHistoryServiceImpl implements IssueHistoryService {
 	@Override
 	public List<IssueHistoryDto> getByIssueId(Long id) {
 		
-		return Arrays.asList(modelMapper.map(issueHistoryRepository.getByIssueId(id), IssueHistoryDto[].class ));
+		return Arrays.asList(modelMapper.map(issueHistoryRepository.getByIssueIdOrderById(id), IssueHistoryDto[].class ));
 	}
 
 	@Override
@@ -61,8 +62,23 @@ public class IssueHistoryServiceImpl implements IssueHistoryService {
 		return Boolean.TRUE;
 	}
 
+	
+
 	@Override
-	public void addHistory(Long id, Issue issue) {
+	public void addHistory(Long id, Issue issueDb) {
+	 IssueHistory history = new IssueHistory();
+	 history.setIssue(issueDb);
+	 history.setAssignee(issueDb.getAssignee());
+	 history.setDate(issueDb.getDate());
+     history.setDescription(issueDb.getDescription());
+     history.setDetails(issueDb.getDetails());
+     history.setIssueStatus(issueDb.getIssueStatus());
+     issueHistoryRepository.save(history);
+		
+	}
+
+	@Override
+	public void addHistory(Long id, IssueUpdateDto issue) {
 		// TODO Auto-generated method stub
 		
 	}

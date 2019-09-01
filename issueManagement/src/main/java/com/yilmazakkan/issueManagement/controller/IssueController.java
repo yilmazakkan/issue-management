@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yilmazakkan.issueManagement.dto.IssueDetailDto;
 import com.yilmazakkan.issueManagement.dto.IssueDto;
+import com.yilmazakkan.issueManagement.dto.IssueUpdateDto;
 import com.yilmazakkan.issueManagement.entity.IssueStatus;
 import com.yilmazakkan.issueManagement.service.impl.IssueServiceImpl;
 import com.yilmazakkan.issueManagement.util.ApiPaths;
@@ -86,10 +88,11 @@ public class IssueController {
 	
 	@PutMapping("/{id}")
 	@ApiOperation(value = "Update Operation", response = IssueDto.class)
-	public ResponseEntity<IssueDto> updateProject(@PathVariable("id") Long id, @Valid @RequestBody IssueDto  project){   // Update Put işlemi için ID vermemiz gerekior PathVarible ile ve dto isticez
+	public ResponseEntity<IssueDetailDto> updateProject(@PathVariable("id") Long id, @Valid @RequestBody IssueUpdateDto  issue){   // Update Put işlemi için ID vermemiz gerekior PathVarible ile ve dto isticez
 																													/*save gönderip insert update handle etmesini bekleyebiliriz ama bu SOLID prensiplerine uymaz
 																													SOLID presiplerinin ilki single responsibility her method veya her işlem kendi görevini yapmalı başka bir metodun görevini yüklememeliyiz*/
-		return ResponseEntity.ok(issueServiceImpl.update(id,project));
+	 
+		return ResponseEntity.ok(issueServiceImpl.update(id, issue));
 			
 		
 	}

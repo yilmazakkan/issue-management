@@ -6,6 +6,7 @@ import java.util.List;
 
 
 import com.yilmazakkan.issueManagement.dto.IssueHistoryDto;
+import com.yilmazakkan.issueManagement.dto.IssueUpdateDto;
 import com.yilmazakkan.issueManagement.entity.Issue;
 import com.yilmazakkan.issueManagement.util.TPage;
 
@@ -21,7 +22,12 @@ public interface IssueHistoryService {
 
 	    Boolean delete(IssueHistoryDto issueHistory);
 
-	    void addHistory(Long id, Issue issue);
+	    void addHistory(Long id, IssueUpdateDto issue);
+
+		void addHistory(Long id, Issue issue);
+
+	
+	
 
 	
 }
