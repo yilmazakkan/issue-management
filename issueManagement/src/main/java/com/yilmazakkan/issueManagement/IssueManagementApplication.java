@@ -25,11 +25,12 @@ public class IssueManagementApplication {
 		
 	}
 //	Converter org.modelmapper.internal.converter.BooleanConverter@6d099f0a failed to convert com.yilmazakkan.issueManagement.entity.IssueStatus to java.lang.Boolean.
-
+/*
 		@Bean
 	    public Jackson2RepositoryPopulatorFactoryBean repositoryPopulator() {
 	        Jackson2RepositoryPopulatorFactoryBean factory = new Jackson2RepositoryPopulatorFactoryBean();
 	        factory.setResources(new Resource[]{new ClassPathResource("projects.json")});
 	        return factory;
 	    }
+		*/
 }

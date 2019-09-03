@@ -10,12 +10,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(value = "Issue Data Transfer Object")
-public class IssueDto {
+public class IssueUpdateDto {
 	@ApiModelProperty(value = "Issue ID")
 	private Long id;
 	
@@ -32,9 +31,10 @@ public class IssueDto {
 	private IssueStatus issueStatus;
 	
 	@ApiModelProperty(required = true,value = "Assigne")
-	private UserDto assignee;
+	private Long assignee_id;
 	
 	@ApiModelProperty(required = true,value = "Project")
-	private ProjectDto project;
-	private ProjectDto projectId;
+	private Long project_id;
 }
+
+
