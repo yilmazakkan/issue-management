@@ -2,6 +2,7 @@ package com.yilmazakkan.issueManagement.service.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,6 +20,7 @@ import com.yilmazakkan.issueManagement.dto.IssueHistoryDto;
 import com.yilmazakkan.issueManagement.dto.IssueUpdateDto;
 import com.yilmazakkan.issueManagement.dto.ProjectDto;
 import com.yilmazakkan.issueManagement.entity.Issue;
+import com.yilmazakkan.issueManagement.entity.IssueStatus;
 import com.yilmazakkan.issueManagement.entity.Project;
 import com.yilmazakkan.issueManagement.entity.User;
 import com.yilmazakkan.issueManagement.repository.IssueRepository;
@@ -55,11 +57,11 @@ public class IssueServiceImpl implements IssueService{
 
 	@Override
 	public IssueDto save(IssueDto issue) {
-		if (issue.getDate() == null) {
-			
-			throw new IllegalArgumentException("Issue date cannot be null!! ");
-		}		
-			Issue issueDb = modelMapper.map(issue, Issue.class);  // dışardan gelen nesneyi yani "issue" içerdeki modele dönüştür yani "issueDb" dönüştürdü
+		
+		issue.setDate(new Date());
+		issue.setIssueStatus(IssueStatus.OPEN);  //issue ilk açıldığında Status 
+		
+		Issue issueDb = modelMapper.map(issue, Issue.class);  // dışardan gelen nesneyi yani "issue" içerdeki modele dönüştür yani "issueDb" dönüştürdü
 		
 		 issueDb = issueRepository.save(issueDb);   //modeldende kaydettikten sonra
 		 
