@@ -88,8 +88,8 @@ public class IssueServiceImpl implements IssueService{
 
 
 	@Override
-	public Boolean delete(Long issueId) {
-		 issueRepository.deleteById(issueId);
+	public Boolean delete(Long id) {
+		 issueRepository.deleteById(id);
 		 return true;
 	}
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +35,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping(ApiPaths.IssueCtrl.CTRL)
 @Api(value = ApiPaths.IssueCtrl.CTRL, description = "Issue APIs")
-@CrossOrigin
+@CrossOrigin( origins ="http://localhost:4200")
 public class IssueController {
 
 	/**
