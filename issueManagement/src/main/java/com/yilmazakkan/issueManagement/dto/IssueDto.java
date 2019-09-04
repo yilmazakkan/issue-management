@@ -36,5 +36,5 @@ public class IssueDto {
 	
 	@ApiModelProperty(required = true,value = "Project")
 	private ProjectDto project;
-	private ProjectDto projectId;
+	private Long projectId;
 }

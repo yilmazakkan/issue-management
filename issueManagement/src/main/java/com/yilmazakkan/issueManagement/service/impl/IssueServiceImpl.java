@@ -1,11 +1,8 @@
 package com.yilmazakkan.issueManagement.service.impl;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
-import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +15,8 @@ import com.yilmazakkan.issueManagement.dto.IssueDetailDto;
 import com.yilmazakkan.issueManagement.dto.IssueDto;
 import com.yilmazakkan.issueManagement.dto.IssueHistoryDto;
 import com.yilmazakkan.issueManagement.dto.IssueUpdateDto;
-import com.yilmazakkan.issueManagement.dto.ProjectDto;
 import com.yilmazakkan.issueManagement.entity.Issue;
 import com.yilmazakkan.issueManagement.entity.IssueStatus;
-import com.yilmazakkan.issueManagement.entity.Project;
 import com.yilmazakkan.issueManagement.entity.User;
 import com.yilmazakkan.issueManagement.repository.IssueRepository;
 import com.yilmazakkan.issueManagement.repository.ProjectRepository;
@@ -58,14 +53,18 @@ public class IssueServiceImpl implements IssueService{
 	@Override
 	public IssueDto save(IssueDto issue) {
 		
-		issue.setDate(new Date());
-		issue.setIssueStatus(IssueStatus.OPEN);  //issue ilk açıldığında Status 
-		
-		Issue issueDb = modelMapper.map(issue, Issue.class);  // dışardan gelen nesneyi yani "issue" içerdeki modele dönüştür yani "issueDb" dönüştürdü
-		
-		 issueDb = issueRepository.save(issueDb);   //modeldende kaydettikten sonra
-		 
-		 return modelMapper.map(issueDb, IssueDto.class);  // issueDb bu sefer bu nesneyi dto dönüştürüp geri ver.
+		  issue.setDate(new Date());
+	        issue.setIssueStatus(IssueStatus.OPEN); //issue ilk açıldığında Status 
+
+
+	        Issue issueEntity = modelMapper.map(issue, Issue.class);  // dışardan gelen nesneyi yani "issue" içerdeki modele dönüştür yani "issueEntity" dönüştürdü
+
+	        issueEntity.setProject(projectRepository.getOne(issue.getProjectId()));
+	        issueEntity = issueRepository.save(issueEntity);  //modeldende kaydettikten sonra
+
+	        issue.setId(issueEntity.getId());
+	        return issue;
+	        
 	}
 
 

@@ -35,7 +35,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping(ApiPaths.IssueCtrl.CTRL)
 @Api(value = ApiPaths.IssueCtrl.CTRL, description = "Issue APIs")
-@CrossOrigin( origins ="http://localhost:4200")
+@CrossOrigin
 public class IssueController {
 
 	/**
