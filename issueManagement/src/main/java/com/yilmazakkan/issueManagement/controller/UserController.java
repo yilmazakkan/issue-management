@@ -58,7 +58,6 @@ public class UserController {
 	public ResponseEntity<UserDto> getById(@PathVariable (value = "id",required = true) Long id){  //required = true null bir id geldiğinde islem yapmaya calısmasın.
 		UserDto user = userServiceImpl.getById(id);
 		return ResponseEntity.ok(user);
-	
 	}
 	
 	 @PostMapping

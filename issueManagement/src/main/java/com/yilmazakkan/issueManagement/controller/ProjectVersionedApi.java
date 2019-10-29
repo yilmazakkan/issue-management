@@ -39,6 +39,5 @@ public class ProjectVersionedApi {
 		return ResponseEntity.ok(projectDto);
 	
 	}
-	
-	
+
 }
