@@ -12,6 +12,7 @@ import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,6 +47,7 @@ public class User extends BaseEntity {
 	@Column(name = "name_surname", length = 200)
 	private String nameSurname;
 
+	@Email
 	@Column(name = "email", length = 100)
 	private String email;
 

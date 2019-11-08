@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
 	public List<UserDto> getAll() {
 		List<User> data = userRepository.findAll();
 		return Arrays.asList(modelMapper.map(data, UserDto[].class));
-	}
+	} 
 
 	@Override
 	public UserDto getByUsername(String username) {
