@@ -27,6 +27,6 @@ public class UserDto {
     private String username;
 	@NotNull
 	@Email
-    @ApiModelProperty(required = true,value = "E-Mail")
+    @ApiModelProperty(required = true,value = "email")
     private String email;
 }

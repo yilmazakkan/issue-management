@@ -54,4 +54,6 @@ public class User extends BaseEntity {
 	@JoinColumn(name = "assignee_user_id")
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<Issue> issues;
+	
+	
 }
