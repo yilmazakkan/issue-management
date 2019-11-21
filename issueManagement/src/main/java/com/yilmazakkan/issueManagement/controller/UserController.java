@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping(ApiPaths.UserCtrl.CTRL)
 @Api(value = ApiPaths.UserCtrl.CTRL, description = "User APIs")
-@CrossOrigin
+@CrossOrigin( origins = "http://localhost:4200")
 public class UserController {
 
 	

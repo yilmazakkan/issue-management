@@ -99,6 +99,7 @@ public class ProjectServiceImpl implements ProjectService {
 			throw new IllegalArgumentException("Project Code Already Exist");
 		}
 		
+		
 		projectDb.setProjectCode(project.getProjectCode());
 		projectDb.setProjectName(project.getProjectName());
 		
