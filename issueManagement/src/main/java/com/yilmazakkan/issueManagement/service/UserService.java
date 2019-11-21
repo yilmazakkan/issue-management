@@ -13,4 +13,6 @@ public interface UserService {
 	    TPage<UserDto> getAllPageable(Pageable pageable);
 
 	    UserDto getByUsername(String username);
+	    
+	    Boolean delete(Long userId);
 }

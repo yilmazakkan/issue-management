@@ -81,5 +81,10 @@ public class UserServiceImpl implements UserService {
 			return Boolean.FALSE;
 		}
 	}
+	@Override
+    public Boolean delete(Long userId) {
+        userRepository.deleteById(userId);
+        return true;
+    }
 
 }
